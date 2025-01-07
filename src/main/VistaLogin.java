@@ -75,7 +75,6 @@ public class VistaLogin extends JFrame {
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(124, 87, 89, 23);
 		contentPane.add(btnCancelar);
-		setVisible(true);
 	}
 
 	public JButton getBtnOk() {
@@ -84,5 +83,13 @@ public class VistaLogin extends JFrame {
 
 	public JButton getBtnCancelar() {
 		return btnCancelar;
+	}
+
+	public JTextField getTxtUser() {
+		return txtUser;
+	}
+
+	public JTextField getTxtPwd() {
+		return txtPwd;
 	}
 }

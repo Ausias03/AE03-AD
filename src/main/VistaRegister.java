@@ -88,7 +88,6 @@ public class VistaRegister extends JFrame {
 		txtPwd2.setColumns(10);
 		txtPwd2.setBounds(133, 93, 123, 20);
 		contentPane.add(txtPwd2);
-		setVisible(true);
 	}
 
 	public JButton getBtnOk() {
@@ -97,6 +96,18 @@ public class VistaRegister extends JFrame {
 
 	public JButton getBtnCancelar() {
 		return btnCancelar;
+	}
+
+	public JTextField getTxtUser() {
+		return txtUser;
+	}
+
+	public JTextField getTxtPwd() {
+		return txtPwd;
+	}
+
+	public JTextField getTxtPwd2() {
+		return txtPwd2;
 	}
 
 }
