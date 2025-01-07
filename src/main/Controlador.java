@@ -48,6 +48,17 @@ public class Controlador {
 				}
 			}
 		});
+		
+		vista.getBtnLoadCards().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					model.loadCardsToDb();
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
 
 		vistaLogin.getBtnOk().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

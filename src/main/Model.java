@@ -17,18 +17,19 @@ import java.util.ArrayList;
 import java.util.Base64;
 
 public class Model {
+	private final File cardsDirectory = new File("resources/cards");
+	private final File dbDataFile = new File("resources/db_data.json");
+	private final int collectionsBeforeCards = 2;
+	
 	private String sessionUsername = "";
 	private String sessionPwd = "";
 	private MongoClient dbClient;
 	private MongoDatabase db;
 	private MongoCollection<Document>[] collections;
-	private final File cardsDirectory = new File("resources/cards");
-	private final File dbDataFile = new File("resources/db_data.json");
 
 	public boolean logInUser(String username, String pwd) {
-		MongoCollection<Document> collection = db.getCollection("users");
 		String pwdHash = DigestUtils.sha256Hex(pwd);
-		if (userExists(username, pwdHash, collection)) {
+		if (userExists(username, pwdHash, collections[0])) {
 			sessionUsername = username;
 			sessionPwd = pwdHash;
 			return true;
@@ -38,11 +39,10 @@ public class Model {
 	}
 
 	public boolean signUpUser(String username, String pwd) {
-		MongoCollection<Document> collection = db.getCollection("users");
 		String pwdHash = DigestUtils.sha256Hex(pwd);
-		if (!userExists(username, pwdHash, collection)) {
+		if (!userExists(username, pwdHash, collections[0])) {
 			Document newUser = new Document("user", username).append("pass", pwdHash);
-			collection.insertOne(newUser);
+			collections[0].insertOne(newUser);
 			return true;
 		} else {
 			return false;
@@ -90,7 +90,7 @@ public class Model {
 
 				cards.add(cardDocument);
 			}
-			collections[i].insertMany(cards);
+			collections[i + collectionsBeforeCards].insertMany(cards);
 		}
 	}
 

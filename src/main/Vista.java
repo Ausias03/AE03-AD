@@ -17,6 +17,7 @@ public class Vista extends JFrame {
 	private JButton btnRegister;
 	private JButton btnLogIn;
 	private JButton btnLogout;
+	private JButton btnLoadCards;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -45,7 +46,7 @@ public class Vista extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnLoadCards = new JButton("Load Cards");
+		btnLoadCards = new JButton("Load Cards");
 		btnLoadCards.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnLoadCards.setBounds(10, 11, 100, 23);
 		contentPane.add(btnLoadCards);
@@ -165,5 +166,9 @@ public class Vista extends JFrame {
 
 	public JButton getBtnLogout() {
 		return btnLogout;
+	}
+	
+	public JButton getBtnLoadCards() {
+		return btnLoadCards;
 	}
 }
