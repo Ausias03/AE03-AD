@@ -14,6 +14,8 @@ public class Vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JButton btnRegister;
+	private JButton btnLogIn;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -47,12 +49,12 @@ public class Vista extends JFrame {
 		btnLoadCards.setBounds(10, 11, 100, 23);
 		contentPane.add(btnLoadCards);
 		
-		JButton btnRegister = new JButton("Register");
+		btnRegister = new JButton("Register");
 		btnRegister.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnRegister.setBounds(120, 11, 80, 23);
 		contentPane.add(btnRegister);
 		
-		JButton btnLogIn = new JButton("Log In");
+		btnLogIn = new JButton("Log In");
 		btnLogIn.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnLogIn.setBounds(207, 11, 80, 23);
 		contentPane.add(btnLogIn);
@@ -150,5 +152,13 @@ public class Vista extends JFrame {
 		lblTotalScorePlayerValue.setBounds(505, 407, 61, 14);
 		contentPane.add(lblTotalScorePlayerValue);
 		setVisible(true);
+	}
+
+	public JButton getBtnRegister() {
+		return btnRegister;
+	}
+
+	public JButton getBtnLogIn() {
+		return btnLogIn;
 	}
 }

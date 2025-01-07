@@ -77,4 +77,12 @@ public class VistaLogin extends JFrame {
 		contentPane.add(btnCancelar);
 		setVisible(true);
 	}
+
+	public JButton getBtnOk() {
+		return btnOk;
+	}
+
+	public JButton getBtnCancelar() {
+		return btnCancelar;
+	}
 }

@@ -91,4 +91,12 @@ public class VistaRegister extends JFrame {
 		setVisible(true);
 	}
 
+	public JButton getBtnOk() {
+		return btnOk;
+	}
+
+	public JButton getBtnCancelar() {
+		return btnCancelar;
+	}
+
 }
