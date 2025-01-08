@@ -19,6 +19,13 @@ public class Controlador {
 		this.vistaRegister = vistaRegister;
 		this.model = model;
 
+		try {
+			model.openConnection();
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+		
 		initEventHandlers();
 	}
 
@@ -54,6 +61,7 @@ public class Controlador {
 				try {
 					model.loadCardsToDb();
 				} catch (Exception e) {
+					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
 							JOptionPane.INFORMATION_MESSAGE);
 				}

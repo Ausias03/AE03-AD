@@ -4,8 +4,6 @@
 	db_name: "casino",
 	collections: [
 		"users",
-		"scores",
-		"cards_es",
-		"cards_fr"
+		"scores"
 	]
 }

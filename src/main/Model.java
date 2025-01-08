@@ -20,6 +20,7 @@ public class Model {
 	private final File cardsDirectory = new File("resources/cards");
 	private final File dbDataFile = new File("resources/db_data.json");
 	private final int collectionsBeforeCards = 2;
+	private final String[] cardsCollections = new String[] { "cards_es", "cards_fr" };
 	
 	private String sessionUsername = "";
 	private String sessionPwd = "";
@@ -64,8 +65,9 @@ public class Model {
 		dbClient = new MongoClient(dbData.getString("ip"), dbData.getInt("port"));
 		db = dbClient.getDatabase(dbData.getString("db_name"));
 		JSONArray collectionsJsonArray = dbData.getJSONArray("collections");
-		collections = new MongoCollection[collectionsJsonArray.length()];
-		for (int i = 0; i < collections.length; i++) {
+		int collectionsLength = collectionsJsonArray.length();
+		collections = new MongoCollection[collectionsLength + cardsCollections.length];
+		for (int i = 0; i < collectionsLength; i++) {
 			collections[i] = db.getCollection(collectionsJsonArray.getString(i));
 		}
 	}
@@ -77,12 +79,15 @@ public class Model {
 	public void loadCardsToDb() throws Exception {
 		File[] countryCardsDirs = cardsDirectory.listFiles();
 		for (int i = 0; i < countryCardsDirs.length; i++) {
+			createCardsCollection(cardsCollections[i]);
 			ArrayList<Document> cards = new ArrayList<Document>();
 			for (File card : countryCardsDirs[i].listFiles()) {
 				String[] cardNameSplitted = card.getName().split("_");
 				String suit = cardNameSplitted[0];
-				int points = Integer.parseInt(cardNameSplitted[1].split(".")[0]);
-
+				int points = Integer.parseInt(cardNameSplitted[1].split("\\.")[0]);
+				if(points > 10)
+					points = 10;
+				
 				Document cardDocument = new Document();
 				cardDocument.append("suit", suit);
 				cardDocument.append("points", points);
@@ -110,6 +115,22 @@ public class Model {
 		br.close();
 		fr.close();
 		return new JSONObject(jsonString);
+	}
+	
+	private void createCardsCollection(String name) throws Exception {
+		MongoCollection<Document> collection = db.getCollection(name);
+		if(collection != null)
+			collection.drop();
+		db.createCollection(name);
+		collections[nextCollectionSpotAvailable()] = db.getCollection(name);
+	}
+	
+	private int nextCollectionSpotAvailable() {
+		for(int i = 0; i < collections.length; i++) {
+			if(collections[i] == null)
+				return i;
+		}
+		return -1;
 	}
 
 	private String encodeImageToBase64(File image) throws Exception {
