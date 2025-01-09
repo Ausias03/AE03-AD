@@ -22,10 +22,9 @@ public class Controlador {
 		try {
 			model.openConnection();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
-					JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
 		}
-		
+
 		initEventHandlers();
 	}
 
@@ -45,7 +44,7 @@ public class Controlador {
 		vista.getBtnLogout().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (model.logOutUser()) {
-					vista.getBtnLogIn().setBackground(Color.gray);
+					vista.getBtnLogIn().setBackground(null);
 					vista.getBtnLogIn().setEnabled(true);
 					JOptionPane.showMessageDialog(null, "User logged out", "ACTION BUTTON SEARCH",
 							JOptionPane.INFORMATION_MESSAGE);
@@ -55,15 +54,16 @@ public class Controlador {
 				}
 			}
 		});
-		
+
 		vista.getBtnLoadCards().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					model.loadCardsToDb();
+					JOptionPane.showMessageDialog(null, "Card images loaded succesfully", "Info",
+							JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception e) {
 					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, e.getMessage(), "Error",
-							JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -71,7 +71,7 @@ public class Controlador {
 		vistaLogin.getBtnOk().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String userName = vistaLogin.getTxtUser().getText();
-				String pwdField = vistaLogin.getTxtPwd().getText();
+				String pwdField = String.valueOf(vistaLogin.getPwdField().getPassword());
 				boolean loggedIn = model.logInUser(userName, pwdField);
 				JOptionPane.showMessageDialog(null,
 						model.logInUser(userName, pwdField) ? "User logged in succesfully!"
@@ -82,7 +82,7 @@ public class Controlador {
 					vista.getBtnLogIn().setEnabled(false);
 				}
 				vistaLogin.getTxtUser().setText("");
-				vistaLogin.getTxtPwd().setText("");
+				vistaLogin.getPwdField().setText("");
 				vistaLogin.setVisible(false);
 			}
 		});
@@ -90,7 +90,7 @@ public class Controlador {
 		vistaLogin.getBtnCancelar().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				vistaLogin.getTxtUser().setText("");
-				vistaLogin.getTxtPwd().setText("");
+				vistaLogin.getPwdField().setText("");
 				vistaLogin.setVisible(false);
 			}
 		});
@@ -98,8 +98,8 @@ public class Controlador {
 		vistaRegister.getBtnOk().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String userName = vistaRegister.getTxtUser().getText();
-				String pwdField1 = vistaRegister.getTxtPwd().getText();
-				String pwdField2 = vistaRegister.getTxtPwd2().getText();
+				String pwdField1 = String.valueOf(vistaRegister.getPwdField1().getPassword());
+				String pwdField2 = String.valueOf(vistaRegister.getPwdField2().getPassword());
 				if (pwdField1.equals(pwdField2)) {
 					JOptionPane.showMessageDialog(null,
 							model.signUpUser(userName, pwdField1) ? "User registered succesfully!"
@@ -110,8 +110,8 @@ public class Controlador {
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 				vistaRegister.getTxtUser().setText("");
-				vistaRegister.getTxtPwd().setText("");
-				vistaRegister.getTxtPwd2().setText("");
+				vistaRegister.getPwdField1().setText("");
+				vistaRegister.getPwdField2().setText("");
 				vistaRegister.setVisible(false);
 			}
 		});
@@ -119,8 +119,8 @@ public class Controlador {
 		vistaRegister.getBtnCancelar().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				vistaRegister.getTxtUser().setText("");
-				vistaRegister.getTxtPwd().setText("");
-				vistaRegister.getTxtPwd2().setText("");
+				vistaRegister.getPwdField1().setText("");
+				vistaRegister.getPwdField2().setText("");
 				vistaRegister.setVisible(false);
 			}
 		});

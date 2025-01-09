@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Random;
 
 public class Model {
 	private final File cardsDirectory = new File("resources/cards");
@@ -27,6 +28,14 @@ public class Model {
 	private MongoClient dbClient;
 	private MongoDatabase db;
 	private MongoCollection<Document>[] collections;
+	
+	public Model() {
+		try {
+			openConnection();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	public boolean logInUser(String username, String pwd) {
 		String pwdHash = DigestUtils.sha256Hex(pwd);
@@ -139,5 +148,37 @@ public class Model {
 		encodedImage = new String(Base64.getEncoder().encode(fis.readAllBytes()));
 		fis.close();
 		return encodedImage;
+	}
+
+	private ArrayList<Integer> generateRandomNumbers(int arrayLength) {
+		final int iterations = 1000;
+		
+		ArrayList<Integer> numberArray = new ArrayList<Integer>();
+		Random random = new Random();
+		int i = 0;
+
+		for (int j = 1; j <= arrayLength; j++) {
+			numberArray.add(j);
+		}
+
+		Integer[] posToShuffle = new Integer[2];
+
+		while (i < iterations) {
+			posToShuffle[0] = null;
+			posToShuffle[1] = null;
+			
+			do {
+				posToShuffle[0] = random.nextInt(arrayLength);
+				posToShuffle[1] = random.nextInt(arrayLength);
+			} while (posToShuffle[0] == posToShuffle[1]);
+			
+			int aux = numberArray.get(posToShuffle[0]);
+			numberArray.set(posToShuffle[0], numberArray.get(posToShuffle[1]));
+			numberArray.set(posToShuffle[1], aux);
+			
+			i++;
+		}
+
+		return numberArray;
 	}
 }

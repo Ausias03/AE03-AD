@@ -9,17 +9,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JPasswordField;
 
 public class VistaRegister extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUser;
-	private JTextField txtPwd;
 	private JButton btnOk;
 	private JButton btnCancelar;
 	private JLabel lblPwd2;
-	private JTextField txtPwd2;
+	private JPasswordField pwdField1;
+	private JPasswordField pwdField2;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -64,18 +65,12 @@ public class VistaRegister extends JFrame {
 		lblPwd.setBounds(12, 52, 69, 20);
 		contentPane.add(lblPwd);
 		
-		txtPwd = new JTextField();
-		txtPwd.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtPwd.setColumns(10);
-		txtPwd.setBounds(133, 52, 123, 20);
-		contentPane.add(txtPwd);
-		
 		btnOk = new JButton("Aceptar");
-		btnOk.setBounds(12, 128, 89, 23);
+		btnOk.setBounds(167, 128, 89, 23);
 		contentPane.add(btnOk);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(167, 128, 89, 23);
+		btnCancelar.setBounds(12, 128, 89, 23);
 		contentPane.add(btnCancelar);
 		
 		lblPwd2 = new JLabel("Repeat Password:");
@@ -83,11 +78,13 @@ public class VistaRegister extends JFrame {
 		lblPwd2.setBounds(12, 87, 116, 30);
 		contentPane.add(lblPwd2);
 		
-		txtPwd2 = new JTextField();
-		txtPwd2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtPwd2.setColumns(10);
-		txtPwd2.setBounds(133, 93, 123, 20);
-		contentPane.add(txtPwd2);
+		pwdField1 = new JPasswordField();
+		pwdField1.setBounds(133, 53, 123, 20);
+		contentPane.add(pwdField1);
+		
+		pwdField2 = new JPasswordField();
+		pwdField2.setBounds(133, 93, 123, 20);
+		contentPane.add(pwdField2);
 	}
 
 	public JButton getBtnOk() {
@@ -102,12 +99,11 @@ public class VistaRegister extends JFrame {
 		return txtUser;
 	}
 
-	public JTextField getTxtPwd() {
-		return txtPwd;
+	public JPasswordField getPwdField1() {
+		return pwdField1;
 	}
 
-	public JTextField getTxtPwd2() {
-		return txtPwd2;
+	public JPasswordField getPwdField2() {
+		return pwdField2;
 	}
-
 }

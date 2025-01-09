@@ -9,15 +9,16 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 
 public class VistaLogin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUser;
-	private JTextField txtPwd;
 	private JButton btnOk;
 	private JButton btnCancelar;
+	private JPasswordField pwdField;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -62,19 +63,17 @@ public class VistaLogin extends JFrame {
 		lblPwd.setBounds(12, 46, 69, 30);
 		contentPane.add(lblPwd);
 		
-		txtPwd = new JTextField();
-		txtPwd.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		txtPwd.setColumns(10);
-		txtPwd.setBounds(90, 52, 123, 20);
-		contentPane.add(txtPwd);
-		
 		btnOk = new JButton("Aceptar");
-		btnOk.setBounds(12, 87, 89, 23);
+		btnOk.setBounds(124, 89, 89, 23);
 		contentPane.add(btnOk);
 		
 		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(124, 87, 89, 23);
+		btnCancelar.setBounds(12, 89, 89, 23);
 		contentPane.add(btnCancelar);
+		
+		pwdField = new JPasswordField();
+		pwdField.setBounds(90, 52, 123, 20);
+		contentPane.add(pwdField);
 	}
 
 	public JButton getBtnOk() {
@@ -89,7 +88,7 @@ public class VistaLogin extends JFrame {
 		return txtUser;
 	}
 
-	public JTextField getTxtPwd() {
-		return txtPwd;
+	public JPasswordField getPwdField() {
+		return pwdField;
 	}
 }
