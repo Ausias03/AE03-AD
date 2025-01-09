@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import game.Human;
 import game.Player;
+import game.Robot;
 
 public class Controlador {
 
@@ -49,10 +50,10 @@ public class Controlador {
 				if (model.logOutUser()) {
 					vista.getBtnLogIn().setBackground(null);
 					vista.getBtnLogIn().setEnabled(true);
-					JOptionPane.showMessageDialog(null, "User logged out", "ACTION BUTTON SEARCH",
+					JOptionPane.showMessageDialog(null, "User logged out", "Info",
 							JOptionPane.INFORMATION_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(null, "You are not logged in", "ACTION BUTTON SEARCH",
+					JOptionPane.showMessageDialog(null, "You are not logged in", "Info",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
@@ -84,7 +85,7 @@ public class Controlador {
 					JOptionPane.showMessageDialog(null, choice == 0 ? "Crupier starts!" : "Player starts!", "Error",
 							JOptionPane.INFORMATION_MESSAGE);
 					
-					/*while (players[0].getStop() && players[1].getStop()) {
+					while (!players[0].isFinished() && !players[1].isFinished()) {
 						for (Player player : players) {
 			                if (player instanceof Human) {
 			                    ((Human) player).play(10);
@@ -92,7 +93,7 @@ public class Controlador {
 			                    player.play();
 			                }
 			            }
-					}*/
+					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -119,30 +120,6 @@ public class Controlador {
 			}
 		});
 
-		vista.getBtnNewCard().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// Check if game has started
-				if (true) {
-
-				} else {
-					JOptionPane.showMessageDialog(null, "The game hasn't started!", "Error",
-							JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
-		});
-
-		vista.getBtnStand().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				// Check if game has started
-				if (true) {
-
-				} else {
-					JOptionPane.showMessageDialog(null, "The game hasn't started!", "Error",
-							JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
-		});
-
 		vistaLogin.getBtnOk().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String userName = vistaLogin.getTxtUser().getText();
@@ -151,7 +128,7 @@ public class Controlador {
 				JOptionPane.showMessageDialog(null,
 						model.logInUser(userName, pwdField) ? "User logged in succesfully!"
 								: "Error, couldn't log in user",
-						"ACTION BUTTON SEARCH", JOptionPane.INFORMATION_MESSAGE);
+						"Info", JOptionPane.INFORMATION_MESSAGE);
 				if (loggedIn) {
 					vista.getBtnLogIn().setBackground(Color.green);
 					vista.getBtnLogIn().setEnabled(false);
@@ -179,7 +156,7 @@ public class Controlador {
 					JOptionPane.showMessageDialog(null,
 							model.signUpUser(userName, pwdField1) ? "User registered succesfully!"
 									: "Error, couldn't register user",
-							"ACTION BUTTON SEARCH", JOptionPane.INFORMATION_MESSAGE);
+							"Info", JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					JOptionPane.showMessageDialog(null, "The passwords do not match", "ACTION BUTTON SEARCH",
 							JOptionPane.INFORMATION_MESSAGE);
