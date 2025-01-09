@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import game.Game;
 import game.Human;
 import game.Player;
 
@@ -85,7 +84,7 @@ public class Controlador {
 					JOptionPane.showMessageDialog(null, choice == 0 ? "Crupier starts!" : "Player starts!", "Error",
 							JOptionPane.INFORMATION_MESSAGE);
 					
-					while (players[0].getStop() && players[1].getStop()) {
+					/*while (players[0].getStop() && players[1].getStop()) {
 						for (Player player : players) {
 			                if (player instanceof Human) {
 			                    ((Human) player).play(10);
@@ -93,7 +92,7 @@ public class Controlador {
 			                    player.play();
 			                }
 			            }
-					}
+					}*/
 				} else {
 					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -122,7 +121,8 @@ public class Controlador {
 
 		vista.getBtnNewCard().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (model.getGame() != null) {
+				// Check if game has started
+				if (true) {
 
 				} else {
 					JOptionPane.showMessageDialog(null, "The game hasn't started!", "Error",
@@ -133,7 +133,8 @@ public class Controlador {
 
 		vista.getBtnStand().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (model.getGame() != null) {
+				// Check if game has started
+				if (true) {
 
 				} else {
 					JOptionPane.showMessageDialog(null, "The game hasn't started!", "Error",
