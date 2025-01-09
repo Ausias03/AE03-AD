@@ -1,10 +1,14 @@
-package main;
+package mvc;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
+
+import game.Game;
+import game.Human;
+import game.Player;
 
 public class Controlador {
 
@@ -64,6 +68,76 @@ public class Controlador {
 				} catch (Exception e) {
 					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+
+		vista.getBtnStart().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (model.isLogged()) {
+					Player[] players = new Player[2];
+					String[] options = { "Crupier (A.I.)", "User (human)" };
+
+					int choice = JOptionPane.showOptionDialog(null, "Who starts?", "Choose Starter",
+							JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+					String cardSuit = vista.getCboSuit().getSelectedItem().toString();
+
+					JOptionPane.showMessageDialog(null, choice == 0 ? "Crupier starts!" : "Player starts!", "Error",
+							JOptionPane.INFORMATION_MESSAGE);
+					
+					while (players[0].getStop() && players[1].getStop()) {
+						for (Player player : players) {
+			                if (player instanceof Human) {
+			                    ((Human) player).play(10);
+			                } else {
+			                    player.play();
+			                }
+			            }
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+
+		vista.getBtnSave().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (model.isLogged()) {
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+
+		vista.getBtnHall().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (model.isLogged()) {
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+
+		vista.getBtnNewCard().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (model.getGame() != null) {
+
+				} else {
+					JOptionPane.showMessageDialog(null, "The game hasn't started!", "Error",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+		});
+
+		vista.getBtnStand().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (model.getGame() != null) {
+
+				} else {
+					JOptionPane.showMessageDialog(null, "The game hasn't started!", "Error",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});

@@ -1,4 +1,4 @@
-package main;
+package mvc;
 
 import java.awt.EventQueue;
 
@@ -19,6 +19,14 @@ public class Vista extends JFrame {
 	private JButton btnLogIn;
 	private JButton btnLogout;
 	private JButton btnLoadCards;
+	private JButton btnStart;
+	private JButton btnSave;
+	private JButton btnHall;
+	private JButton btnCrupierCard;
+	private JButton btnPlayerCard;
+	private JButton btnNewCard;
+	private JButton btnStand;
+	private JComboBox cboSuit;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -67,21 +75,21 @@ public class Vista extends JFrame {
 		lblSuit.setBounds(305, 15, 61, 14);
 		contentPane.add(lblSuit);
 		
-		JComboBox cboSuit = new JComboBox(suits);
+		cboSuit = new JComboBox(suits);
 		cboSuit.setBounds(368, 11, 47, 22);
 		contentPane.add(cboSuit);
 
-		JButton btnStart = new JButton("Start");
+		btnStart = new JButton("Start");
 		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnStart.setBounds(425, 11, 73, 23);
 		contentPane.add(btnStart);
 
-		JButton btnSave = new JButton("Save");
+		btnSave = new JButton("Save");
 		btnSave.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnSave.setBounds(508, 11, 73, 23);
 		contentPane.add(btnSave);
 
-		JButton btnHall = new JButton("Hall Of Fame");
+		btnHall = new JButton("Hall Of Fame");
 		btnHall.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnHall.setBounds(591, 11, 100, 23);
 		contentPane.add(btnHall);
@@ -96,7 +104,7 @@ public class Vista extends JFrame {
 		lblCrupier.setBounds(20, 45, 46, 14);
 		contentPane.add(lblCrupier);
 
-		JButton btnCrupierCard = new JButton("");
+		btnCrupierCard = new JButton("");
 		btnCrupierCard.setBounds(21, 70, 266, 325);
 		contentPane.add(btnCrupierCard);
 
@@ -110,7 +118,7 @@ public class Vista extends JFrame {
 		lblScoreHistoryCrupier.setBounds(20, 435, 90, 14);
 		contentPane.add(lblScoreHistoryCrupier);
 
-		JButton btnPlayerCard = new JButton("");
+		btnPlayerCard = new JButton("");
 		btnPlayerCard.setBounds(426, 70, 266, 325);
 		contentPane.add(btnPlayerCard);
 
@@ -129,12 +137,12 @@ public class Vista extends JFrame {
 		lblScoreHistoryPlayer.setBounds(425, 435, 90, 14);
 		contentPane.add(lblScoreHistoryPlayer);
 
-		JButton btnNewCard = new JButton("New card");
+		btnNewCard = new JButton("New card");
 		btnNewCard.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnNewCard.setBounds(689, 404, 89, 23);
 		contentPane.add(btnNewCard);
 
-		JButton btnStand = new JButton("Stand");
+		btnStand = new JButton("Stand");
 		btnStand.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnStand.setBounds(689, 432, 89, 23);
 		contentPane.add(btnStand);
@@ -171,5 +179,37 @@ public class Vista extends JFrame {
 	
 	public JButton getBtnLoadCards() {
 		return btnLoadCards;
+	}
+
+	public JButton getBtnStart() {
+		return btnStart;
+	}
+
+	public JButton getBtnSave() {
+		return btnSave;
+	}
+
+	public JButton getBtnHall() {
+		return btnHall;
+	}
+
+	public JButton getBtnCrupierCard() {
+		return btnCrupierCard;
+	}
+
+	public JButton getBtnPlayerCard() {
+		return btnPlayerCard;
+	}
+
+	public JButton getBtnNewCard() {
+		return btnNewCard;
+	}
+
+	public JButton getBtnStand() {
+		return btnStand;
+	}
+
+	public JComboBox getCboSuit() {
+		return cboSuit;
 	}
 }
