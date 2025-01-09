@@ -1,10 +1,13 @@
 package game;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public class Game {
 	public final String[] options = { "Crupier (A.I.)", "User (human)" };
 	
+	private ArrayList<Card> cards;
 	private Player[] players = new Player[2];
 	private boolean finished = false;
 	
@@ -12,7 +15,7 @@ public class Game {
 		return finished;
 	}
 	
-	public Game(int whoStartsFirst) {
+	public Game(int whoStartsFirst, ArrayList<Card> cards) {
 		if(whoStartsFirst == 0) {
 			players[0] = new Robot();
 			players[1] = new Human();
@@ -21,6 +24,7 @@ public class Game {
 			players[0] = new Human();
 			players[1] = new Robot();
 		}
+		this.cards = cards;
 	}
 	
 	public void start() {
@@ -28,7 +32,7 @@ public class Game {
 			JOptionPane.showMessageDialog(null, String.format("%s's turn", players[0].getType()), "Turn",
 					JOptionPane.INFORMATION_MESSAGE);
 			if(!players[0].isFinished()) {
-				players[0].play();
+				players[0].play(cards);
 				if(players[0].isLost()) {
 					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[1].getType()), "Winner",
 							JOptionPane.INFORMATION_MESSAGE);
@@ -38,7 +42,7 @@ public class Game {
 			JOptionPane.showMessageDialog(null, String.format("%s's turn", players[1].getType()), "Turn",
 					JOptionPane.INFORMATION_MESSAGE);
 			if(!players[1].isFinished()) {
-				players[1].play();
+				players[1].play(cards);
 				if(players[1].isLost()) {
 					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[0].getType()), "Winner",
 							JOptionPane.INFORMATION_MESSAGE);

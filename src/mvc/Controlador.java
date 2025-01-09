@@ -84,16 +84,6 @@ public class Controlador {
 
 					JOptionPane.showMessageDialog(null, choice == 0 ? "Crupier starts!" : "Player starts!", "Start",
 							JOptionPane.INFORMATION_MESSAGE);
-					
-					while (!players[0].isFinished() && !players[1].isFinished()) {
-						for (Player player : players) {
-			                if (player instanceof Human) {
-			                    ((Human) player).play(10);
-			                } else {
-			                    player.play();
-			                }
-			            }
-					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);
 				}

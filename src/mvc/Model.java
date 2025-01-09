@@ -7,7 +7,10 @@ import org.json.JSONObject;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+
+import game.Card;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -112,15 +115,14 @@ public class Model {
 		return sessionUsername.length() != 0;
 	}
 	
-	public ArrayList<Integer> generateRandomNumbers(int arrayLength) {
+	public ArrayList<Card> generateRandomCards(int suit) {
 		final int iterations = 1000;
 		
-		ArrayList<Integer> numberArray = new ArrayList<Integer>();
 		Random random = new Random();
 		int i = 0;
-
-		for (int j = 1; j <= arrayLength; j++) {
-			numberArray.add(j);
+		ArrayList<Card> cardsArray = new ArrayList<Card>();
+		for(Document card : collections[suit].find()) {
+			cardsArray.add(new Card(card.getString("suit"), card.getInteger("points"), card.getString("base64")));
 		}
 
 		Integer[] posToShuffle = new Integer[2];
@@ -130,18 +132,18 @@ public class Model {
 			posToShuffle[1] = null;
 			
 			do {
-				posToShuffle[0] = random.nextInt(arrayLength);
-				posToShuffle[1] = random.nextInt(arrayLength);
+				posToShuffle[0] = random.nextInt(cardsArray.size());
+				posToShuffle[1] = random.nextInt(cardsArray.size());
 			} while (posToShuffle[0] == posToShuffle[1]);
 			
-			int aux = numberArray.get(posToShuffle[0]);
-			numberArray.set(posToShuffle[0], numberArray.get(posToShuffle[1]));
-			numberArray.set(posToShuffle[1], aux);
+			Card aux = cardsArray.get(posToShuffle[0]);
+			cardsArray.set(posToShuffle[0], cardsArray.get(posToShuffle[1]));
+			cardsArray.set(posToShuffle[1], aux);
 			
 			i++;
 		}
 
-		return numberArray;
+		return cardsArray;
 	}
 
 	private boolean userExists(String username, String pwd, MongoCollection<Document> collection) {

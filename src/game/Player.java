@@ -1,5 +1,7 @@
 package game;
 
+import java.util.ArrayList;
+
 public abstract class Player {
 	protected String type;
 	protected int points = 0;
@@ -22,5 +24,5 @@ public abstract class Player {
 		return type;
 	}
 
-	public abstract void play();
+	public abstract void play(ArrayList<Card> cards);
 }
