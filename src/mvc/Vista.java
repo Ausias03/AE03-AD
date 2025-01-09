@@ -24,8 +24,6 @@ public class Vista extends JFrame {
 	private JButton btnHall;
 	private JButton btnCrupierCard;
 	private JButton btnPlayerCard;
-	private JButton btnNewCard;
-	private JButton btnStand;
 	private JComboBox cboSuit;
 
 	public static void main(String[] args) {
@@ -137,16 +135,6 @@ public class Vista extends JFrame {
 		lblScoreHistoryPlayer.setBounds(425, 435, 90, 14);
 		contentPane.add(lblScoreHistoryPlayer);
 
-		btnNewCard = new JButton("New card");
-		btnNewCard.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnNewCard.setBounds(689, 404, 89, 23);
-		contentPane.add(btnNewCard);
-
-		btnStand = new JButton("Stand");
-		btnStand.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnStand.setBounds(689, 432, 89, 23);
-		contentPane.add(btnStand);
-
 		JLabel lblTotalScoreCrupierValue = new JLabel("***");
 		lblTotalScoreCrupierValue.setBounds(98, 408, 61, 14);
 		contentPane.add(lblTotalScoreCrupierValue);
@@ -199,14 +187,6 @@ public class Vista extends JFrame {
 
 	public JButton getBtnPlayerCard() {
 		return btnPlayerCard;
-	}
-
-	public JButton getBtnNewCard() {
-		return btnNewCard;
-	}
-
-	public JButton getBtnStand() {
-		return btnStand;
 	}
 
 	public JComboBox getCboSuit() {
