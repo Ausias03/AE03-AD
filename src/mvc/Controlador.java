@@ -79,9 +79,9 @@ public class Controlador {
 
 					int choice = JOptionPane.showOptionDialog(null, "Who starts?", "Choose Starter",
 							JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
-					String cardSuit = vista.getCboSuit().getSelectedItem().toString();
+					int cardSuit = vista.getCboSuit().getSelectedIndex() + model.collectionsBeforeCards;
 
-					JOptionPane.showMessageDialog(null, choice == 0 ? "Crupier starts!" : "Player starts!", "Error",
+					JOptionPane.showMessageDialog(null, choice == 0 ? "Crupier starts!" : "Player starts!", "Start",
 							JOptionPane.INFORMATION_MESSAGE);
 					
 					/*while (players[0].getStop() && players[1].getStop()) {

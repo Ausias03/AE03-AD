@@ -18,10 +18,10 @@ import java.util.Base64;
 import java.util.Random;
 
 public class Model {
-	private final File cardsDirectory = new File("resources/cards");
-	private final File dbDataFile = new File("resources/db_data.json");
-	private final int collectionsBeforeCards = 2;
-	private final String[] cardsCollections = new String[] { "cards_es", "cards_fr" };
+	public final File cardsDirectory = new File("resources/cards");
+	public final File dbDataFile = new File("resources/db_data.json");
+	public final int collectionsBeforeCards = 2;
+	public final String[] cardsCollections = new String[] { "cards_es", "cards_fr" };
 	
 	private String sessionUsername = "";
 	private String sessionPwd = "";
