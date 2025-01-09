@@ -24,10 +24,10 @@ public class Game {
 	}
 	
 	public void start() {
-		while(!players[0].isFinished && !players[1].isFinished) {
+		while(!players[0].isFinished() && !players[1].isFinished()) {
 			JOptionPane.showMessageDialog(null, String.format("%s's turn", players[0].getType()), "Turn",
 					JOptionPane.INFORMATION_MESSAGE);
-			if(!players[0].isFinished) {
+			if(!players[0].isFinished()) {
 				players[0].play();
 				if(players[0].isLost()) {
 					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[1].getType()), "Winner",
@@ -60,6 +60,6 @@ public class Game {
 	}
 	
 	private String whoWins() {
-		return players[0].getPoints > players[1].getPoints() ? players[0].getType() : players[1].getType();
+		return players[0].getPoints() > players[1].getPoints() ? players[0].getType() : players[1].getType();
 	}
 }

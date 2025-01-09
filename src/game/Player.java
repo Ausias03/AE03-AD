@@ -13,6 +13,10 @@ public abstract class Player {
 	public boolean isFinished() {
 		return finished;
 	}
+	
+	public boolean isLost() {
+		return lost;
+	}
 
 	public String getType() {
 		return type;
