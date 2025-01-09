@@ -9,6 +9,6 @@ public class Robot extends Player {
 	
     @Override
     public void play(ArrayList<Card> cards) {
-        
+    	String[] options = { "Stand", "Hit" };
     }
 }
