@@ -60,7 +60,7 @@ public class Controlador {
 					vista.getBtnLogIn().setEnabled(true);
 					JOptionPane.showMessageDialog(null, "User logged out", "Info", JOptionPane.INFORMATION_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(null, "You are not logged in", "Info",
+					JOptionPane.showMessageDialog(null, "Not logged in!", "Info",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
@@ -98,7 +98,12 @@ public class Controlador {
 		vista.getBtnSave().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (model.isLogged()) {
-					
+					if (model.getGame() != null) {
+						model.saveGameToScores();
+						JOptionPane.showMessageDialog(null, "Game Saved!", "Info", JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						JOptionPane.showMessageDialog(null, "No game registered!", "Error", JOptionPane.INFORMATION_MESSAGE);
+					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);
 				}
