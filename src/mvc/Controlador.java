@@ -21,12 +21,14 @@ public class Controlador {
 	private Vista vista;
 	private VistaLogin vistaLogin;
 	private VistaRegister vistaRegister;
+	private VistaFame vistaFame;
 	private Model model;
 
-	public Controlador(Vista vista, VistaLogin vistaLogin, VistaRegister vistaRegister, Model model) {
+	public Controlador(Vista vista, VistaLogin vistaLogin, VistaRegister vistaRegister, VistaFame vistaFame, Model model) {
 		this.vista = vista;
 		this.vistaLogin = vistaLogin;
 		this.vistaRegister = vistaRegister;
+		this.vistaFame = vistaFame;
 		this.model = model;
 
 		try {
@@ -97,7 +99,7 @@ public class Controlador {
 		vista.getBtnSave().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (model.isLogged()) {
-
+					
 				} else {
 					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -107,7 +109,9 @@ public class Controlador {
 		vista.getBtnHall().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (model.isLogged()) {
-
+					String scores = "Scores:" + System.lineSeparator() + model.obtainHallOfFame();					
+					vistaFame.getTxaFame().setText(scores);
+					vistaFame.setVisible(true);
 				} else {
 					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -166,6 +170,13 @@ public class Controlador {
 				vistaRegister.getPwdField1().setText("");
 				vistaRegister.getPwdField2().setText("");
 				vistaRegister.setVisible(false);
+			}
+		});
+		
+		vistaFame.getBtnSalir().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				vistaFame.getTxaFame().setText("");
+				vistaFame.setVisible(false);
 			}
 		});
 	}

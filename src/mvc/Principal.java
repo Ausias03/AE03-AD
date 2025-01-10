@@ -11,7 +11,8 @@ public class Principal {
 		Vista vista = new Vista();
 		VistaLogin vistaLogin = new VistaLogin();
 		VistaRegister vistaRegister = new VistaRegister();
+		VistaFame vistaFame = new VistaFame();
 		Model model = new Model();
-		Principal.controlador = new Controlador(vista, vistaLogin, vistaRegister, model);
+		Principal.controlador = new Controlador(vista, vistaLogin, vistaRegister, vistaFame, model);
 	}
 }
