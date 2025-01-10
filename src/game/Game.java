@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.swing.JOptionPane;
 
+import mvc.Principal;
+
 public class Game {
 	public final String[] options = { "Crupier (A.I.)", "User (human)" };
 	public final String[] suits = { "ES", "FR" };
@@ -56,7 +58,7 @@ public class Game {
 			JOptionPane.showMessageDialog(null, String.format("%s's turn", players[0].getType()), "Turn",
 					JOptionPane.INFORMATION_MESSAGE);
 			if(!players[0].isFinished()) {
-				players[0].play(cards);
+				Principal.getControlador().updateCard(players[0].play(cards), players[0].type);
 				if(players[0].isLost()) {
 					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[1].getType()), "Winner",
 							JOptionPane.INFORMATION_MESSAGE);
@@ -72,7 +74,7 @@ public class Game {
 			JOptionPane.showMessageDialog(null, String.format("%s's turn", players[1].getType()), "Turn",
 					JOptionPane.INFORMATION_MESSAGE);
 			if(!players[1].isFinished()) {
-				players[1].play(cards);
+				Principal.getControlador().updateCard(players[1].play(cards), players[1].getType());
 				if(players[1].isLost()) {
 					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[0].getType()), "Winner",
 							JOptionPane.INFORMATION_MESSAGE);
