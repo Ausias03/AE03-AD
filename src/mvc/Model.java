@@ -131,7 +131,7 @@ public class Model {
 		Random random = new Random();
 		int i = 0;
 		ArrayList<Card> cardsArray = new ArrayList<Card>();
-		for(Document card : collections[suit].find()) {
+		for(Document card : collections[suit + collectionsBeforeCards].find()) {
 			cardsArray.add(new Card(card.getString("suit"), card.getInteger("points"), card.getString("base64")));
 		}
 
