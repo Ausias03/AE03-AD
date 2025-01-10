@@ -93,6 +93,10 @@ public class Model {
 		dbClient.close();
 	}
 	
+	public boolean cardsLoaded() {
+		return collections[collections.length - 1] != null;
+	}
+	
 	public void startGame(int whoStartsFirst, int suit) {
 		game = new Game(whoStartsFirst, suit, generateRandomCards(suit));
 		game.start();
