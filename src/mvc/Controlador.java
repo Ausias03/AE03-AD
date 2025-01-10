@@ -84,9 +84,9 @@ public class Controlador {
 
 					int choice = JOptionPane.showOptionDialog(null, "Who starts?", "Choose Starter",
 							JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
-					int cardSuit = vista.getCboSuit().getSelectedIndex() + model.collectionsBeforeCards;
+					int cardSuit = vista.getCboSuit().getSelectedIndex();
 
-					Game game = new Game(choice, model.generateRandomCards(cardSuit));
+					Game game = new Game(choice, cardSuit, model.generateRandomCards(cardSuit));
 					game.start();
 				} else {
 					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);

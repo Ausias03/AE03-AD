@@ -154,6 +154,14 @@ public class Model {
 		
 		collections[1].insertOne(score);
 	}
+	
+	public String obtainHallOfFame() {
+		String hallOfFame = "";
+		for(Document score : collections[1].find()) {
+			hallOfFame += String.format("%s %d points (%s, %s)\n", score.getString("user"), score.getInteger("points"), score.getString("suit"), score.getString("timestamp"));
+		}
+		return hallOfFame;
+	}
 
 	private boolean userExists(String username, String pwd, MongoCollection<Document> collection) {
 		Document filtro = new Document("user", username).append("pass", pwd);
