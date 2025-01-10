@@ -16,6 +16,7 @@ public class Human extends Player {
 				JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
     	
     	if (choice == 1) {
+    		this.action = 1;
     		Card card = cards.removeLast();
     		if(card.getPoints() == 1) {
     			String[] values = { "1", "11" };
@@ -34,6 +35,7 @@ public class Human extends Player {
     		return card;
     	}
     	
+    	this.action = 0;
     	return null;
     }
 }

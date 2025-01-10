@@ -11,6 +11,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 
 import game.Card;
+import game.Game;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -144,6 +145,15 @@ public class Model {
 		}
 
 		return cardsArray;
+	}
+	
+	public void saveGameToScores(Game game) {
+		Document score = new Document().append("user", sessionUsername)
+									   .append("suit", String.format("Suit %s", game.getSuitString()))
+									   .append("points", game.getHumanPlayer().getPoints())
+									   .append("timestamp", game.getTimeStamp());
+		
+		collections[1].insertOne(score);
 	}
 
 	private boolean userExists(String username, String pwd, MongoCollection<Document> collection) {

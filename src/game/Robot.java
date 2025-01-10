@@ -13,6 +13,7 @@ public class Robot extends Player {
     		return null;
     	
     	if(points < 17) {
+    		this.action = 1;
     		Card card = cards.removeLast();
     		
     		if(card.getPoints() == 1)
@@ -29,6 +30,7 @@ public class Robot extends Player {
     	}
     	
 		this.finished = true;
+		this.action = 0;
 		return null;
     }
 }

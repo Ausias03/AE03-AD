@@ -1,21 +1,42 @@
 package game;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
 public class Game {
 	public final String[] options = { "Crupier (A.I.)", "User (human)" };
+	public final String[] suits = { "ES", "FR" };
 	
+	private String timeStamp;
+	private int suit;
 	private ArrayList<Card> cards;
 	private Player[] players = new Player[2];
 	private boolean finished = false;
+	
+	public String getTimeStamp() {
+		return timeStamp;
+	}
 	
 	public boolean isFinished() {
 		return finished;
 	}
 	
-	public Game(int whoStartsFirst, ArrayList<Card> cards) {
+	public String getSuitString() {
+		return suits[suit];
+	}
+	
+	public Human getHumanPlayer() {
+		for(Player player : players) {
+			if(player instanceof Human)
+				return (Human)player;
+		}
+		return null;
+	}
+	
+	public Game(int whoStartsFirst, int suit, ArrayList<Card> cards) {
 		if(whoStartsFirst == 0) {
 			players[0] = new Robot();
 			players[1] = new Human();
@@ -25,10 +46,13 @@ public class Game {
 			players[1] = new Robot();
 		}
 		this.cards = cards;
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		timeStamp = sdf.format(new Date());
 	}
 	
 	public void start() {
-		while(!players[0].isFinished() && !players[1].isFinished()) {
+		while(true) {
 			JOptionPane.showMessageDialog(null, String.format("%s's turn", players[0].getType()), "Turn",
 					JOptionPane.INFORMATION_MESSAGE);
 			if(!players[0].isFinished()) {
@@ -37,8 +61,14 @@ public class Game {
 					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[1].getType()), "Winner",
 							JOptionPane.INFORMATION_MESSAGE);
 					break;
-				}				
+				}
+				if(players[0].getPoints() == 21) {
+					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[0].getType()), "Winner",
+							JOptionPane.INFORMATION_MESSAGE);
+					break;
+				}
 			}
+			
 			JOptionPane.showMessageDialog(null, String.format("%s's turn", players[1].getType()), "Turn",
 					JOptionPane.INFORMATION_MESSAGE);
 			if(!players[1].isFinished()) {
@@ -47,8 +77,16 @@ public class Game {
 					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[0].getType()), "Winner",
 							JOptionPane.INFORMATION_MESSAGE);
 					break;
-				}				
+				}
+				if(players[1].getPoints() == 21) {
+					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[1].getType()), "Winner",
+							JOptionPane.INFORMATION_MESSAGE);
+					break;
+				}
 			}
+			
+			if(players[0].getAction() == 0 && players[1].getAction() == 0)
+				break;
 		}
 		
 		if(!players[0].isLost() && !players[1].isLost()) {
