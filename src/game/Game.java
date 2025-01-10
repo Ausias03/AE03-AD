@@ -58,15 +58,13 @@ public class Game {
 			JOptionPane.showMessageDialog(null, String.format("%s's turn", players[0].getType()), "Turn",
 					JOptionPane.INFORMATION_MESSAGE);
 			if(!players[0].isFinished()) {
-				Principal.getControlador().updateCard(players[0].play(cards), players[0].type);
+				Principal.getControlador().updateCard(players[0].play(cards), players[0]);
 				if(players[0].isLost()) {
 					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[1].getType()), "Winner",
 							JOptionPane.INFORMATION_MESSAGE);
 					break;
 				}
 				if(players[0].getPoints() == 21) {
-					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[0].getType()), "Winner",
-							JOptionPane.INFORMATION_MESSAGE);
 					break;
 				}
 			}
@@ -74,15 +72,13 @@ public class Game {
 			JOptionPane.showMessageDialog(null, String.format("%s's turn", players[1].getType()), "Turn",
 					JOptionPane.INFORMATION_MESSAGE);
 			if(!players[1].isFinished()) {
-				Principal.getControlador().updateCard(players[1].play(cards), players[1].getType());
+				Principal.getControlador().updateCard(players[1].play(cards), players[1]);
 				if(players[1].isLost()) {
 					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[0].getType()), "Winner",
 							JOptionPane.INFORMATION_MESSAGE);
 					break;
 				}
 				if(players[1].getPoints() == 21) {
-					JOptionPane.showMessageDialog(null, String.format("The winner is %s", players[1].getType()), "Winner",
-							JOptionPane.INFORMATION_MESSAGE);
 					break;
 				}
 			}

@@ -20,7 +20,7 @@ public class Human extends Player {
     		Card card = cards.removeLast();
     		if(card.getPoints() == 1) {
     			String[] values = { "1", "11" };
-    	    	int pointsChoice = JOptionPane.showOptionDialog(null, "Select Value:", "Value",
+    	    	int pointsChoice = JOptionPane.showOptionDialog(null, "Select Value:", "You got an Ace!",
     					JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, values, values[1]);
     	    	this.points += (pointsChoice == 0) ? 1 : 11;
     		}

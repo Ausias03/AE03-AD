@@ -83,6 +83,12 @@ public class Controlador {
 			public void actionPerformed(ActionEvent arg0) {
 				if (model.isLogged()) {
 					if (model.cardsLoaded()) {
+						vista.getBtnCrupierCard().setIcon(null);
+						vista.getBtnPlayerCard().setIcon(null);
+						vista.getLblScoreHistoryCrupierValue().setText("");
+						vista.getLblScoreHistoryPlayerValue().setText("");
+						vista.getLblTotalScoreCrupierValue().setText("0");
+						vista.getLblTotalScorePlayerValue().setText("0");
 						String[] options = { "Crupier (A.I.)", "User (human)" };
 
 						int choice = JOptionPane.showOptionDialog(null, "Who starts?", "Choose Starter",
@@ -91,7 +97,8 @@ public class Controlador {
 
 						model.startGame(choice, cardSuit);
 					} else {
-						JOptionPane.showMessageDialog(null, "Load cards first!", "Error", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Load cards first!", "Error",
+								JOptionPane.INFORMATION_MESSAGE);
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -190,7 +197,7 @@ public class Controlador {
 		});
 	}
 
-	public void updateCard(Card card, String player) {
+	public void updateCard(Card card, Player player) {
 		if (card == null) {
 			return;
 		}
@@ -203,18 +210,24 @@ public class Controlador {
 			int buttonHeight = vista.getBtnPlayerCard().getHeight();
 			Image resizedImg = img.getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
 			ImageIcon imgIcon = new ImageIcon(resizedImg);
-			if (player.equals("Human")) {
+			if (player.getType().equals("Human")) {
 				vista.getBtnPlayerCard().setIcon(imgIcon);
-				String history = vista.getLblScoreHistoryPlayerValue().getText();
-				vista.getLblScoreHistoryPlayerValue().setText(history + " " + card.getPoints());
-				int points = Integer.parseInt(vista.getLblTotalScorePlayerValue().getText());
-				vista.getLblTotalScorePlayerValue().setText(Integer.toString(points + card.getPoints()));
+				String history = vista.getLblScoreHistoryPlayerValue().getText();				
+				int points = card.getPoints();
+				if (card.getPoints() == 1) {
+					points = player.getPoints() - Integer.parseInt(vista.getLblTotalScorePlayerValue().getText());
+				}
+				vista.getLblScoreHistoryPlayerValue().setText(history + " " + points);
+				vista.getLblTotalScorePlayerValue().setText(String.valueOf(player.getPoints()));
 			} else {
 				vista.getBtnCrupierCard().setIcon(imgIcon);
 				String history = vista.getLblScoreHistoryCrupierValue().getText();
-				vista.getLblScoreHistoryCrupierValue().setText(history + " " + card.getPoints());
-				int points = Integer.parseInt(vista.getLblTotalScoreCrupierValue().getText());
-				vista.getLblTotalScoreCrupierValue().setText(Integer.toString(points + card.getPoints()));
+				int points = card.getPoints();
+				if (card.getPoints() == 1) {
+					points = player.getPoints() - Integer.parseInt(vista.getLblTotalScoreCrupierValue().getText());
+				}
+				vista.getLblScoreHistoryCrupierValue().setText(history + " " + points);
+				vista.getLblTotalScoreCrupierValue().setText(String.valueOf(player.getPoints()));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
