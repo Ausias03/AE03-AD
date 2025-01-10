@@ -50,7 +50,7 @@ public class VistaFame extends JFrame {
 		lblHallOfFame.setBounds(102, 11, 138, 34);
 		contentPane.add(lblHallOfFame);
 
-		btnSalir = new JButton("Salir");
+		btnSalir = new JButton("Exit");
 		btnSalir.setBounds(241, 392, 89, 23);
 		contentPane.add(btnSalir);
 		

@@ -65,11 +65,11 @@ public class VistaRegister extends JFrame {
 		lblPwd.setBounds(12, 52, 69, 20);
 		contentPane.add(lblPwd);
 		
-		btnOk = new JButton("Aceptar");
+		btnOk = new JButton("Accept");
 		btnOk.setBounds(167, 128, 89, 23);
 		contentPane.add(btnOk);
 		
-		btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("Cancel");
 		btnCancelar.setBounds(12, 128, 89, 23);
 		contentPane.add(btnCancelar);
 		

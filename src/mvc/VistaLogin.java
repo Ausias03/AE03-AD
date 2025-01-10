@@ -63,11 +63,11 @@ public class VistaLogin extends JFrame {
 		lblPwd.setBounds(12, 46, 69, 30);
 		contentPane.add(lblPwd);
 		
-		btnOk = new JButton("Aceptar");
+		btnOk = new JButton("Accept");
 		btnOk.setBounds(124, 89, 89, 23);
 		contentPane.add(btnOk);
 		
-		btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("Cancel");
 		btnCancelar.setBounds(12, 89, 89, 23);
 		contentPane.add(btnCancelar);
 		
