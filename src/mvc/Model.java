@@ -31,6 +31,11 @@ public class Model {
 	private MongoClient dbClient;
 	private MongoDatabase db;
 	private MongoCollection<Document>[] collections;
+	private Game game = null;
+	
+	public Game getGame() {
+		return game;
+	}
 	
   	public Model() {
 		try {
@@ -86,6 +91,11 @@ public class Model {
 
 	public void closeConnection() {
 		dbClient.close();
+	}
+	
+	public void startGame(int whoStartsFirst, int suit) {
+		game = new Game(whoStartsFirst, suit, generateRandomCards(suit));
+		game.start();
 	}
 
 	public void loadCardsToDb() throws Exception {
@@ -146,7 +156,7 @@ public class Model {
 		return cardsArray;
 	}
 	
-	public void saveGameToScores(Game game) {
+	public void saveGameToScores() {
 		Document score = new Document().append("user", sessionUsername)
 									   .append("suit", String.format("Suit %s", game.getSuitString()))
 									   .append("points", game.getHumanPlayer().getPoints())
