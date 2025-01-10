@@ -8,7 +8,27 @@ public class Robot extends Player {
 	}
 	
     @Override
-    public void play(ArrayList<Card> cards) {
-    	String[] options = { "Stand", "Hit" };
+    public Card play(ArrayList<Card> cards) {
+    	if(this.finished)
+    		return null;
+    	
+    	if(points < 17) {
+    		Card card = cards.removeLast();
+    		
+    		if(card.getPoints() == 1)
+    			this.points += (this.points + 11 > 21) ? 1 : 11;
+    		else
+    			this.points += card.getPoints();
+    		
+    		if(this.points > 21) {
+    			this.lost = true;
+    			this.finished = true;
+    		}
+    		
+    		return card;
+    	}
+    	
+		this.finished = true;
+		return null;
     }
 }

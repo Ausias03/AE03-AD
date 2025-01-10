@@ -24,5 +24,5 @@ public abstract class Player {
 		return type;
 	}
 
-	public abstract void play(ArrayList<Card> cards);
+	public abstract Card play(ArrayList<Card> cards);
 }
