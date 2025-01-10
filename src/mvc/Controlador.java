@@ -24,7 +24,8 @@ public class Controlador {
 	private VistaFame vistaFame;
 	private Model model;
 
-	public Controlador(Vista vista, VistaLogin vistaLogin, VistaRegister vistaRegister, VistaFame vistaFame, Model model) {
+	public Controlador(Vista vista, VistaLogin vistaLogin, VistaRegister vistaRegister, VistaFame vistaFame,
+			Model model) {
 		this.vista = vista;
 		this.vistaLogin = vistaLogin;
 		this.vistaRegister = vistaRegister;
@@ -60,8 +61,7 @@ public class Controlador {
 					vista.getBtnLogIn().setEnabled(true);
 					JOptionPane.showMessageDialog(null, "User logged out", "Info", JOptionPane.INFORMATION_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(null, "Not logged in!", "Info",
-							JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Not logged in!", "Info", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		});
@@ -82,13 +82,17 @@ public class Controlador {
 		vista.getBtnStart().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (model.isLogged()) {
-					String[] options = { "Crupier (A.I.)", "User (human)" };
+					if (model.cardsLoaded()) {
+						String[] options = { "Crupier (A.I.)", "User (human)" };
 
-					int choice = JOptionPane.showOptionDialog(null, "Who starts?", "Choose Starter",
-							JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
-					int cardSuit = vista.getCboSuit().getSelectedIndex();
+						int choice = JOptionPane.showOptionDialog(null, "Who starts?", "Choose Starter",
+								JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+						int cardSuit = vista.getCboSuit().getSelectedIndex();
 
-					model.startGame(choice, cardSuit);
+						model.startGame(choice, cardSuit);
+					} else {
+						JOptionPane.showMessageDialog(null, "Load cards first!", "Error", JOptionPane.INFORMATION_MESSAGE);
+					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -102,7 +106,8 @@ public class Controlador {
 						model.saveGameToScores();
 						JOptionPane.showMessageDialog(null, "Game Saved!", "Info", JOptionPane.INFORMATION_MESSAGE);
 					} else {
-						JOptionPane.showMessageDialog(null, "No game registered!", "Error", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "No game registered!", "Error",
+								JOptionPane.INFORMATION_MESSAGE);
 					}
 				} else {
 					JOptionPane.showMessageDialog(null, "Not logged in!", "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -113,7 +118,7 @@ public class Controlador {
 		vista.getBtnHall().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (model.isLogged()) {
-					String scores = "Scores:" + System.lineSeparator() + model.obtainHallOfFame();					
+					String scores = "Scores:" + System.lineSeparator() + model.obtainHallOfFame();
 					vistaFame.getTxaFame().setText(scores);
 					vistaFame.setVisible(true);
 				} else {
@@ -176,7 +181,7 @@ public class Controlador {
 				vistaRegister.setVisible(false);
 			}
 		});
-		
+
 		vistaFame.getBtnSalir().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				vistaFame.getTxaFame().setText("");
@@ -195,10 +200,10 @@ public class Controlador {
 			BufferedImage img = ImageIO.read(bis);
 
 			int buttonWidth = vista.getBtnPlayerCard().getWidth();
-            int buttonHeight = vista.getBtnPlayerCard().getHeight();
-            Image resizedImg = img.getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
-            ImageIcon imgIcon = new ImageIcon(resizedImg);
-			if (player.equals("Human")) {				
+			int buttonHeight = vista.getBtnPlayerCard().getHeight();
+			Image resizedImg = img.getScaledInstance(buttonWidth, buttonHeight, Image.SCALE_SMOOTH);
+			ImageIcon imgIcon = new ImageIcon(resizedImg);
+			if (player.equals("Human")) {
 				vista.getBtnPlayerCard().setIcon(imgIcon);
 				String history = vista.getLblScoreHistoryPlayerValue().getText();
 				vista.getLblScoreHistoryPlayerValue().setText(history + " " + card.getPoints());
