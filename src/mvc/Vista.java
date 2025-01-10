@@ -25,6 +25,10 @@ public class Vista extends JFrame {
 	private JButton btnCrupierCard;
 	private JButton btnPlayerCard;
 	private JComboBox cboSuit;
+	private JLabel lblTotalScoreCrupierValue;
+	private JLabel lblTotalScorePlayerValue;
+	private JLabel lblScoreHistoryCrupierValue;
+	private JLabel lblScoreHistoryPlayerValue;	
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -135,19 +139,19 @@ public class Vista extends JFrame {
 		lblScoreHistoryPlayer.setBounds(425, 435, 90, 14);
 		contentPane.add(lblScoreHistoryPlayer);
 
-		JLabel lblTotalScoreCrupierValue = new JLabel("***");
+		lblTotalScoreCrupierValue = new JLabel("0");
 		lblTotalScoreCrupierValue.setBounds(98, 408, 61, 14);
 		contentPane.add(lblTotalScoreCrupierValue);
 
-		JLabel lblScoreHistoryCrupierValue = new JLabel("***");
+		lblScoreHistoryCrupierValue = new JLabel("");
 		lblScoreHistoryCrupierValue.setBounds(108, 436, 61, 14);
 		contentPane.add(lblScoreHistoryCrupierValue);
 
-		JLabel lblScoreHistoryPlayerValue = new JLabel("***");
+		lblScoreHistoryPlayerValue = new JLabel("");
 		lblScoreHistoryPlayerValue.setBounds(512, 435, 61, 14);
 		contentPane.add(lblScoreHistoryPlayerValue);
 
-		JLabel lblTotalScorePlayerValue = new JLabel("***");
+		lblTotalScorePlayerValue = new JLabel("0");
 		lblTotalScorePlayerValue.setBounds(505, 407, 61, 14);
 		contentPane.add(lblTotalScorePlayerValue);
 		setVisible(true);
@@ -191,5 +195,21 @@ public class Vista extends JFrame {
 
 	public JComboBox getCboSuit() {
 		return cboSuit;
+	}
+
+	public JLabel getLblTotalScoreCrupierValue() {
+		return lblTotalScoreCrupierValue;
+	}
+
+	public JLabel getLblTotalScorePlayerValue() {
+		return lblTotalScorePlayerValue;
+	}
+
+	public JLabel getLblScoreHistoryCrupierValue() {
+		return lblScoreHistoryCrupierValue;
+	}
+
+	public JLabel getLblScoreHistoryPlayerValue() {
+		return lblScoreHistoryPlayerValue;
 	}
 }
