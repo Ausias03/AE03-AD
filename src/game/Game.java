@@ -49,7 +49,7 @@ public class Game {
 		}
 		this.cards = cards;
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		timeStamp = sdf.format(new Date());
 	}
 	
