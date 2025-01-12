@@ -197,6 +197,14 @@ public class Controlador {
 		});
 	}
 
+	/**
+	 * Updates the UI with the card details for the specified player.
+	 * Decodes the card image (Base64), resizes it to fit the button, and updates
+	 * the player's score history and total score.
+	 *
+	 * @param card   the card to be updated, containing its Base64 image and points.
+	 * @param player the player (either "Human" or dealer) whose UI elements will be updated.
+	 */
 	public void updateCard(Card card, Player player) {
 		if (card == null) {
 			return;
