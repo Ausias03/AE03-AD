@@ -102,6 +102,8 @@ public class Game {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		timeStamp = sdf.format(new Date());
+		
+		this.suit = suit;
 	}
 	
     /**
