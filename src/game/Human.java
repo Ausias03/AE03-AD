@@ -4,11 +4,27 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Represents a human player in the game.
+ * Extends the Player class and implements the play method for human-specific behavior.
+ */
 public class Human extends Player {
+    /** 
+     * Constructs a new Human player with the type set to "Human".
+     */
 	public Human() {
 		this.type = "Human";
 	}
 
+    /**
+     * Allows the human player to choose an action ("Stand" or "Hit").
+     * If the player chooses "Hit", a card is drawn, and the points are updated.
+     * If the drawn card is an Ace, the player is prompted to select a value (1 or 11).
+     * The game ends if the player's points exceed 21.
+     * 
+     * @param cards The list of available cards to choose from.
+     * @return The card drawn by the player, or null if the player chooses "Stand".
+     */
     @Override
     public Card play(ArrayList<Card> cards) {
     	String[] options = { "Stand", "Hit" };
