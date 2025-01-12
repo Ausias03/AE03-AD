@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Sorts;
 
 import game.Card;
 import game.Game;
@@ -269,7 +270,7 @@ public class Model {
      */
 	public String obtainHallOfFame() {
 		String hallOfFame = "";
-		for(Document score : collections[1].find()) {
+		for(Document score : collections[1].find().sort(Sorts.descending("points"))) {
 			hallOfFame += String.format("%s %d points (%s, %s)\n", score.getString("user"), score.getInteger("points"), score.getString("suit"), score.getString("timestamp"));
 		}
 		return hallOfFame;
