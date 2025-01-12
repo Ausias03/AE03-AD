@@ -170,7 +170,7 @@ public class Controlador {
 									: "Error, couldn't register user",
 							"Info", JOptionPane.INFORMATION_MESSAGE);
 				} else {
-					JOptionPane.showMessageDialog(null, "The passwords do not match", "ACTION BUTTON SEARCH",
+					JOptionPane.showMessageDialog(null, "The passwords do not match", "Info",
 							JOptionPane.INFORMATION_MESSAGE);
 				}
 				vistaRegister.getTxtUser().setText("");
