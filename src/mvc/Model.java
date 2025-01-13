@@ -281,7 +281,6 @@ public class Model {
      * 
      * @param username The username to check.
      * @param pwd The password hash of the user.
-     * @param collection The collection to search.
      * @return True if the user exists, false otherwise.
      */
 	private boolean userExists(String username, String pwd) {
